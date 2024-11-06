@@ -1,0 +1,17 @@
+MDP Based RL Agent
+
+Objective: Create a 100x100 grid with obstacles between two random points. Build an MDP-based RL agent to optimize both policies and actions at every state. Benchmark Dynamic Programming (DP) methods with Q-learning.
+
+Environment Setup: A 100x100 grid world serves as the environment. Obstacles are placed along a line between two randomly selected points. The agent starts in one corner (0,0) and aims to reach the opposite corner (99,99), which represents the goal state. Each cell in the grid represents a possible state for the agent. Obstacles and boundaries prevent movement into certain cells.
+
+MDP Formulation:
+States: Each cell (x, y) in the 100x100 grid represents a state, totaling 10,000 possible states.
+Actions: The agent can choose from four actions: Up, Down, Left, Right.
+Transition Probabilities: Deterministic transitions. An action moves the agent to the next cell in the chosen direction, unless an obstacle or boundary is encountered, in which case the agent remains in the current state.
+Rewards: +100 for reaching the goal state. -1 for each step taken (encourages finding the shortest path). No additional penalty for hitting obstacles (the time wasted is penalty enough).
+Discount Factor (γ): A value close to 1 (e.g., 0.99) is used to balance immediate and future rewards, encouraging the agent to find the shortest path to the goal.
+
+Value Iteration (DP): Computes the optimal value function for each state by iteratively considering the possible actions and their expected future rewards. This generates an optimal policy (mapping states to actions).
+Policy Iteration (DP): Alternates between policy evaluation (calculating the value function for a given policy) and policy improvement (updating the policy based on the current value function). Converges to the optimal policy.
+Q-Learning (RL): A model-free RL algorithm where the agent learns the optimal action-value function (Q-function) through trial and error. The agent explores the environment, updates its Q-values based on experienced rewards, and gradually learns the optimal policy. Early stopping is implemented based on the average reward over a sliding window of episodes.
+Visualization: The environment, learned policies (for DP methods), and the Q-learning learning curve (rewards over episodes) are visualized to see the agent's behavior and performance.
